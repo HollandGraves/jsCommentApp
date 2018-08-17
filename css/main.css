@@ -1,0 +1,43 @@
+/*
+    1. Body
+    2. Scrollbar
+    3. commentDisplay
+    4. 
+*/
+
+
+
+/* 1. Body
+--------------------------------------------------------------------------------------------------------------- */
+
+/* general styles */
+body {
+
+}
+
+/* 2. Scrollbar
+--------------------------------------------------------------------------------------------------------------- */
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+/* 3. commentDisplay section
+--------------------------------------------------------------------------------------------------------------- */
+
