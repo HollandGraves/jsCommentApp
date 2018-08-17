@@ -41,3 +41,9 @@ body {
 /* 3. commentDisplay section
 --------------------------------------------------------------------------------------------------------------- */
 
+@media(max-width: 541px) {
+    
+    #commentDisplayHead {
+        max-width: 540px;
+    }
+}
