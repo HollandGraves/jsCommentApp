@@ -1,3 +1,22 @@
+//for example: this is a vertical teir, we'll call #tier1
+
+//This is also #tier1
+
+    //This is #tier2
+
+        //This is #tier3
+
+            //etc
+
+
+
+
+//This first vertical tier contains style found
+//over the entire page; as well as, the page
+//container
+
+
+
 //styles body
 document.body.style.backgroundImage = "url('img/haunted-two.gif')";
 document.body.style.backgroundRepeat = "repeat";
@@ -9,6 +28,15 @@ var pageContainer = document.createElement("div");
     pageContainer.id = "pageContainer";
     pageContainer.className = "container mx-auto mb-5";
 document.body.appendChild(pageContainer);
+
+
+
+//This next vertical tier of coding creates the 
+//header; as well as, the "row" div that, due to 
+//using bootstrap, contains the main "meat" divs 
+//of the page, and controls a vast part of the 
+//page responsiveness
+
 
 
     //creates a header for the page
@@ -28,6 +56,15 @@ document.body.appendChild(pageContainer);
     document.getElementById("pageContainer").appendChild(pageContainerRow);
 
 
+
+//This next vertical tier of coding creates the divs 
+//that contains the main UX of the page. This tier 
+//contains specifically one div that is where all the 
+//comments are posted and one div that is where all 
+//the comments are written at
+
+
+
         //creates, styles, and appends section where comments are displayed to the pageContainerRow
         var commentDisplay = document.createElement("div");
             commentDisplay.id = "commentDisplay";
@@ -40,6 +77,13 @@ document.body.appendChild(pageContainer);
             commentDisplay.style.minHeight = "300px";
             commentDisplay.style.maxHeight = "300px";
         document.getElementById("pageContainerRow").appendChild(commentDisplay);
+
+
+
+//This next vertical tier of coding is where the meat 
+//of the UI; creating headers, forms, textareas, and 
+//buttons, etc. 
+
 
 
             //creates, styles, and appends createTextNode that says "Stream Appears Here" to commentDisplay
@@ -88,48 +132,48 @@ document.body.appendChild(pageContainer);
             document.getElementById("commentWrite").appendChild(commentForm);
 
 
-                //creates, styles, and appends textarea that will receive the comment text to commentForm
-                var commentFormText = document.createElement("textarea");
-                    commentFormText.id = "commentFormText";
-                    commentFormText.className = "w-100 mx-auto h-75";
-                    commentFormText.rows = "8";
-                        //media query to control size of text area
-                        rowsQuery(c); //var c = window.matchMedia("(min-width: 768px)");
-                        c.addListener(rowsQuery);
-                        function rowsQuery(x) {
-                            if(x.matches) {
-                                commentFormText.rows = "9";
-                            } else {
-                                    commentFormText.rows = "8";
-                                }
-                        }
-                document.getElementById("commentForm").appendChild(commentFormText);
-
-
-                //creates, styles, and appends button with function (that submits text to commentDisplay) to commentWrite
-                var commentBtn = document.createElement("button");
-                    commentBtn.id = "commentBtn";
-                    commentBtn.className = "btn mt-3";
-                    commentBtn.type = "button";
-                    commentBtn.onclick = 
-                        //function that submits text
-                        function submitText() {
-                            var commentRawInput = document.getElementById("commentFormText").value;
-                            var commentRefinedInput = document.createTextNode(commentRawInput);
-                            var storeRefinedInput = document.createElement("p");
-                            storeRefinedInput.appendChild(commentRefinedInput);
-                            commentDisplay.appendChild(storeRefinedInput);
-                            commentRefinedInput = "";
-                        }
-                    commentBtn.innerText = "Submit";
-                        //media query to move btn at 992px
-                        var d = window.matchMedia("(min-width: 1200px)");
-                        d.addListener(btnMove);
-                        function btnMove(x) {
-                            if(d.matches) {
-                                commentBtn.style.marginLeft = "93px"
-                            } else {
-                                btnMove(d);
+            //creates, styles, and appends textarea that will receive the comment text to commentForm
+            var commentFormText = document.createElement("textarea");
+                commentFormText.id = "commentFormText";
+                commentFormText.className = "w-100 mx-auto h-75";
+                commentFormText.rows = "8";
+                    //media query to control size of text area
+                    rowsQuery(c); //var c = window.matchMedia("(min-width: 768px)");
+                    c.addListener(rowsQuery);
+                    function rowsQuery(x) {
+                        if(x.matches) {
+                            commentFormText.rows = "9";
+                        } else {
+                                commentFormText.rows = "8";
                             }
+                    }
+            document.getElementById("commentForm").appendChild(commentFormText);
+
+
+            //creates, styles, and appends button with function (that submits text to commentDisplay) to commentWrite
+            var commentBtn = document.createElement("button");
+                commentBtn.id = "commentBtn";
+                commentBtn.className = "btn mt-3";
+                commentBtn.type = "button";
+                commentBtn.onclick = 
+                    //function that submits text
+                    function submitText() {
+                        var commentRawInput = document.getElementById("commentFormText").value;
+                        var commentRefinedInput = document.createTextNode(commentRawInput);
+                        var storeRefinedInput = document.createElement("p");
+                        storeRefinedInput.appendChild(commentRefinedInput);
+                        commentDisplay.appendChild(storeRefinedInput);
+                        commentRefinedInput = "";
+                    }
+                commentBtn.innerText = "Submit";
+                    //media query to move btn at 992px
+                    var d = window.matchMedia("(min-width: 1200px)");
+                    d.addListener(btnMove);
+                    function btnMove(x) {
+                        if(d.matches) {
+                            commentBtn.style.marginLeft = "93px"
+                        } else {
+                            btnMove(d);
                         }
-                document.getElementById("commentWrite").appendChild(commentBtn);
+                    }
+            document.getElementById("commentWrite").appendChild(commentBtn);
