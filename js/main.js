@@ -38,6 +38,7 @@ document.body.appendChild(pageContainer);
             commentDisplay.style.backgroundColor = "#90a4ae";
             commentDisplay.style.color = "black";
             commentDisplay.style.minHeight = "300px";
+            commentDisplay.style.maxHeight = "300px";
         document.getElementById("pageContainerRow").appendChild(commentDisplay);
 
 
@@ -106,18 +107,19 @@ document.body.appendChild(pageContainer);
 
 
                 //creates, styles, and appends button with function (that submits text to commentDisplay) to commentWrite
-                var commentRawInput = document.getElementById("commentFormText").value;
-                var commentRefinedInput = document.createTextNode(commentRawInput);
-                var storeRefinedInput = document.createElement("p");
                 var commentBtn = document.createElement("button");
                     commentBtn.id = "commentBtn";
                     commentBtn.className = "btn mt-3";
                     commentBtn.type = "button";
                     commentBtn.onclick = 
+                        //function that submits text
                         function submitText() {
+                            var commentRawInput = document.getElementById("commentFormText").value;
+                            var commentRefinedInput = document.createTextNode(commentRawInput);
+                            var storeRefinedInput = document.createElement("p");
                             storeRefinedInput.appendChild(commentRefinedInput);
                             commentDisplay.appendChild(storeRefinedInput);
-                            commentRawInput = "";
+                            commentRefinedInput = "";
                         }
                     commentBtn.innerText = "Submit";
                         //media query to move btn at 992px

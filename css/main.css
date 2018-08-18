@@ -17,26 +17,49 @@ body {
 
 /* 2. Scrollbar
 --------------------------------------------------------------------------------------------------------------- */
+/* General Page */
 
-/* width */
-::-webkit-scrollbar {
-    width: 10px;
-}
+        /* width */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
 
-/* Track */
-::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-}
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: #888; 
-}
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #888; 
+        }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-}
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
+
+/* Comment Text Box */
+
+        /* width */
+        #commentDisplay::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        /* Track */
+        #commentDisplay::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+
+        /* Handle */
+        #commentDisplay::-webkit-scrollbar-thumb {
+            background: #888; 
+        }
+
+        /* Handle on hover */
+        #commentDisplay::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
 
 /* 3. commentDisplay section
 --------------------------------------------------------------------------------------------------------------- */
