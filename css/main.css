@@ -64,6 +64,11 @@ body {
 /* 3. commentDisplay section
 --------------------------------------------------------------------------------------------------------------- */
 
+/* prevents comments from wraping in display box */
+#commentDisplay {
+    overflow-wrap: break-word;   
+}
+
 @media(max-width: 541px) {
     
     #commentDisplayHead {

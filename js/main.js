@@ -1,3 +1,4 @@
+//This example below explains the vertical structure for the hierarchy of parents to children
 //for example: this is a vertical teir, we'll call #tier1
 
 //This is also #tier1
@@ -37,6 +38,8 @@ document.body.appendChild(pageContainer);
 //of the page, and controls a vast part of the 
 //page responsiveness
 
+    // tier 2
+
 
 
     //creates a header for the page
@@ -50,7 +53,7 @@ document.body.appendChild(pageContainer);
     //creates a div with the bootstrap class row for commentDisplay and commentWrite to appear in
     var pageContainerRow = document.createElement("div");
         pageContainerRow.id = "pageContainerRow";
-        pageContainerRow.className = "row";
+        pageContainerRow.className = "row text-center";
         pageContainerRow.style.boxSizing = "border-box";
         pageContainerRow.style.padding = "0 8px"
     document.getElementById("pageContainer").appendChild(pageContainerRow);
@@ -63,19 +66,22 @@ document.body.appendChild(pageContainer);
 //comments are posted and one div that is where all 
 //the comments are written at
 
+        // tier 3
+
 
 
         //creates, styles, and appends section where comments are displayed to the pageContainerRow
         var commentDisplay = document.createElement("div");
             commentDisplay.id = "commentDisplay";
-            commentDisplay.className = "container-fluid center-text col-12 col-md-6 mt-5";
-            commentDisplay.style.overflow = "auto";
+            commentDisplay.className = "container-fluid text-left col-12 col-md-6 mt-5";
+            commentDisplay.style.overflowY = "auto";
             commentDisplay.style.border = "3px solid #8e8e8e";
             commentDisplay.style.boxShadow = "8px 8px #373737"
             commentDisplay.style.backgroundColor = "#90a4ae";
             commentDisplay.style.color = "black";
             commentDisplay.style.minHeight = "300px";
-            commentDisplay.style.maxHeight = "300px";
+            commentDisplay.style.maxHeight = "500px";
+            commentDisplay.style.borderRadius = "2px";
         document.getElementById("pageContainerRow").appendChild(commentDisplay);
 
 
@@ -84,13 +90,15 @@ document.body.appendChild(pageContainer);
 //of the UI; creating headers, forms, textareas, and 
 //buttons, etc. 
 
+            // tier 4
+
 
 
             //creates, styles, and appends createTextNode that says "Stream Appears Here" to commentDisplay
             var commentDisplayHead = document.createElement("h1");
                 commentDisplayHead.id = "commentDisplayHead";
                 commentDisplayHead.className = "lead border-bottom-info text-center pb-3";
-                commentDisplayHead.innerText = "Stream Appears Here";
+                commentDisplayHead.innerText = "Holland's Stream";
                 commentDisplayHead.style.borderBottom = "1px solid grey"
             document.getElementById("commentDisplay").appendChild(commentDisplayHead);
 
@@ -105,7 +113,7 @@ document.body.appendChild(pageContainer);
             //creates, styles, and appends an h1 that says "Join The Chat" to commentWrite
             var commentWriteHead = document.createElement("h1")
                 commentWriteHead.id = "commentWriteHead";
-                commentWriteHead.className = "lead text-center my-3 ml-xl-5 pl-xl-5";
+                commentWriteHead.className = "lead text-center my-3";
                 commentWriteHead.innerText = "Join the Chat";
                 commentWriteHead.style.fontSize = "1.7rem";
                     //media query to change size of h1
@@ -125,28 +133,27 @@ document.body.appendChild(pageContainer);
             document.getElementById("commentWrite").appendChild(commentWriteHead);
 
 
+            //creates, styles, and appends user name to add beneath the submited comment
+            var userName = document.createElement("input");
+                userName.type = "text";
+                userName.id = "userName";
+                userName.className = "input-group-text mx-auto mt-4 mb-3";
+                userName.placeholder = "Username Here";
+            document.getElementById("commentWrite").appendChild(userName);
+
+
             //creates, styles, and appends form to commentWrite
             var commentForm = document.createElement("form");
                 commentForm.id = "commentForm";
-                commentForm.className = "ml-xl-5 pl-xl-5 ";
+                commentForm.className = "justify-content-center";
             document.getElementById("commentWrite").appendChild(commentForm);
 
 
             //creates, styles, and appends textarea that will receive the comment text to commentForm
             var commentFormText = document.createElement("textarea");
                 commentFormText.id = "commentFormText";
-                commentFormText.className = "w-100 mx-auto h-75";
+                commentFormText.className = "form-control w-100 mx-auto h-75";
                 commentFormText.rows = "8";
-                    //media query to control size of text area
-                    rowsQuery(c); //var c = window.matchMedia("(min-width: 768px)");
-                    c.addListener(rowsQuery);
-                    function rowsQuery(x) {
-                        if(x.matches) {
-                            commentFormText.rows = "9";
-                        } else {
-                                commentFormText.rows = "8";
-                            }
-                    }
             document.getElementById("commentForm").appendChild(commentFormText);
 
 
@@ -154,26 +161,41 @@ document.body.appendChild(pageContainer);
             var commentBtn = document.createElement("button");
                 commentBtn.id = "commentBtn";
                 commentBtn.className = "btn mt-3";
+                commentBtn.form = "commentForm";
                 commentBtn.type = "button";
                 commentBtn.onclick = 
                     //function that submits text
                     function submitText() {
-                        var commentRawInput = document.getElementById("commentFormText").value;
-                        var commentRefinedInput = document.createTextNode(commentRawInput);
-                        var storeRefinedInput = document.createElement("p");
+                        let commentRawInput = document.getElementById("commentFormText").value;
+                        let commentRefinedInput = document.createTextNode(commentRawInput);
+                        let storeRefinedInput = document.createElement("p");
+                        storeRefinedInput.style.whiteSpace = "initial";
                         storeRefinedInput.appendChild(commentRefinedInput);
                         commentDisplay.appendChild(storeRefinedInput);
-                        commentRefinedInput = "";
-                    }
+
+                        // var refinedUserName = "@" + userName.value;
+                        // // refinedUserTextNode will be used when text is submited, as a form of 
+                        // //identification of who submitted the text in the text display box
+                        // var refinedUserTextNode = document.createTextNode(refinedUserName);
+                        //     refinedUserTextNode.style.fontSize = "1.0rem";
+                        //     commentDisplay.appendChild(refinedUserTextNode);
+
+                        //function will turn user name into a tag underneath comment
+                        postUserName;
+
+                        //function clearText is defined just below and is used to clear textarea
+                        setTimeout(clearText, 90);
+                    };
+                    function postUserName() {
+                        let refinedUserName = '@' + document.getElementById('userName').value;
+                        let refinedUserTextNode = document.createTextNode(refinedUserName);
+                            refinedUserTextNode.className = 'lead';
+                            refinedUserTextNode.style.fontSize = '1.0rem';
+                        commentDisplay.appendChild(refinedUserTextNode);
+                    };
+                    function clearText() {
+                        commentFormText.value = '';
+                        userName.value = '';
+                    };
                 commentBtn.innerText = "Submit";
-                    //media query to move btn at 992px
-                    var d = window.matchMedia("(min-width: 1200px)");
-                    d.addListener(btnMove);
-                    function btnMove(x) {
-                        if(d.matches) {
-                            commentBtn.style.marginLeft = "93px"
-                        } else {
-                            btnMove(d);
-                        }
-                    }
             document.getElementById("commentWrite").appendChild(commentBtn);
