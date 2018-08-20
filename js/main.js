@@ -185,7 +185,7 @@ document.body.appendChild(pageContainer);
                         storeRefinedInput.appendChild(commentRefinedInput);
                         commentDisplay.appendChild(storeRefinedInput);
                     }
-                    //This function is also called by the submit button, to submit the "username"
+                    //This function is also called through the submit button, to submit the "username"
                     function collectUserHandle() {
                         //makes user anonymous if no user information is given, or shows the user's handle
                         if(document.getElementById("userName").value == '') {
@@ -216,7 +216,7 @@ document.body.appendChild(pageContainer);
                         let refinedUserTextNode = document.createTextNode(refinedUserName);
                         userNameComment.appendChild(refinedUserTextNode);
                     }
-                    //this is the final function called by the submit button. It clears all the user's input info "submitting" the text
+                    //this is the final function called through the submit button. It clears all the user's input info "submitting" the text
                     function clearText() {
                         commentFormText.value = '';
                         userName.value = '';
