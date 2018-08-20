@@ -80,7 +80,7 @@ document.body.appendChild(pageContainer);
             commentDisplay.style.backgroundColor = "#90a4ae";
             commentDisplay.style.color = "black";
             commentDisplay.style.minHeight = "300px";
-            commentDisplay.style.maxHeight = "500px";
+            commentDisplay.style.maxHeight = "400px";
             commentDisplay.style.borderRadius = "2px";
         document.getElementById("pageContainerRow").appendChild(commentDisplay);
 
@@ -164,38 +164,63 @@ document.body.appendChild(pageContainer);
                 commentBtn.form = "commentForm";
                 commentBtn.type = "button";
                 commentBtn.onclick = 
-                    //function that submits text
-                    function submitText() {
+                    //This function is called through the submit button, to submit all the user's info as a "comment"
+                    function submitComment() {
+                        if(document.getElementById("commentFormText").value == '') {
+                            commentFormText.placeholder = "You must enter text to submit";
+                        } else {
+                            collectUserComment();
+                            collectUserHandle();
+                            setTimeout(clearText, 90);
+                        }
+                    }
+                    //This function submits the text the user intends to send as a comment
+                    function collectUserComment() {
                         let commentRawInput = document.getElementById("commentFormText").value;
                         let commentRefinedInput = document.createTextNode(commentRawInput);
                         let storeRefinedInput = document.createElement("p");
+                            storeRefinedInput.className = "lead";
+                            storeRefinedInput.style.lineHeight = "2rem";
                         storeRefinedInput.style.whiteSpace = "initial";
                         storeRefinedInput.appendChild(commentRefinedInput);
                         commentDisplay.appendChild(storeRefinedInput);
-
-                        // var refinedUserName = "@" + userName.value;
-                        // // refinedUserTextNode will be used when text is submited, as a form of 
-                        // //identification of who submitted the text in the text display box
-                        // var refinedUserTextNode = document.createTextNode(refinedUserName);
-                        //     refinedUserTextNode.style.fontSize = "1.0rem";
-                        //     commentDisplay.appendChild(refinedUserTextNode);
-
-                        //function will turn user name into a tag underneath comment
-                        postUserName;
-
-                        //function clearText is defined just below and is used to clear textarea
-                        setTimeout(clearText, 90);
-                    };
-                    function postUserName() {
-                        let refinedUserName = '@' + document.getElementById('userName').value;
+                    }
+                    //This function is also called by the submit button, to submit the "username"
+                    function collectUserHandle() {
+                        //makes user anonymous if no user information is given, or shows the user's handle
+                        if(document.getElementById("userName").value == '') {
+                            userAnon();
+                        } else {
+                            userHandle();
+                        }
+                    }
+                    //function posts user's handle as well if a username is given
+                    function userHandle() {
+                        var userInfoComment = document.createElement("div");
+                        commentDisplay.appendChild(userInfoComment);
+                        var userNameComment = document.createElement("p");
+                            userNameComment.style.lineHeight = "2rem";
+                        userInfoComment.appendChild(userNameComment);
+                        let refinedUserName = "@" + document.getElementById("userName").value;
                         let refinedUserTextNode = document.createTextNode(refinedUserName);
-                            refinedUserTextNode.className = 'lead';
-                            refinedUserTextNode.style.fontSize = '1.0rem';
-                        commentDisplay.appendChild(refinedUserTextNode);
-                    };
+                        userNameComment.appendChild(refinedUserTextNode);
+                    }
+                    //fucntion posts user's handle as anonymous
+                    function userAnon() {
+                        var userInfoComment = document.createElement("div");
+                        commentDisplay.appendChild(userInfoComment);
+                        var userNameComment = document.createElement("p");
+                            userNameComment.style.lineHeight = "2rem";
+                        userInfoComment.appendChild(userNameComment);
+                        let refinedUserName = "@anonymous";
+                        let refinedUserTextNode = document.createTextNode(refinedUserName);
+                        userNameComment.appendChild(refinedUserTextNode);
+                    }
+                    //this is the final function called by the submit button. It clears all the user's input info "submitting" the text
                     function clearText() {
                         commentFormText.value = '';
                         userName.value = '';
+                        commentFormText.placeholder = '';
                     };
                 commentBtn.innerText = "Submit";
             document.getElementById("commentWrite").appendChild(commentBtn);

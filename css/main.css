@@ -48,17 +48,17 @@ body {
 
         /* Track */
         #commentDisplay::-webkit-scrollbar-track {
-            background: #f1f1f1; 
+            background: #616161; 
         }
 
         /* Handle */
         #commentDisplay::-webkit-scrollbar-thumb {
-            background: #888; 
+            background: #62757f;
         }
 
         /* Handle on hover */
         #commentDisplay::-webkit-scrollbar-thumb:hover {
-            background: #555; 
+            background: #c1d5e0; 
         }
 
 /* 3. commentDisplay section
